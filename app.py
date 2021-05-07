@@ -9,8 +9,6 @@ def hello():
 if __name__ =="__main__":
     app.run()
 '''
-
-
 from website import create_app
 from waitress import serve
 from simplejson import dumps
