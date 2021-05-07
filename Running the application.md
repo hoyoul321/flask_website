@@ -10,6 +10,12 @@ For example we might spawn a docker MySQL instance using:
 ------------not using--------------
 
 **2. Clone the code and run the app**
+pip install flask 
+
+pipenv shell
+
+pipenv install Pipfile
+
 
 ```bash
 # Get the code

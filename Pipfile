@@ -8,7 +8,6 @@ email-validator = "*"
 python-decouple = "*"
 gunicorn = "*"
 pandas = "*"
-
 Flask = ">=1.1"
 Flask-Login = "*"
 Flask-Migrate = "*"
@@ -19,15 +18,12 @@ flask-marshmallow = "*"
 flask-babel = ">=2"
 flask-security-too = ">=4.0.0"
 flask-sqlalchemy-session = ">=1.1"
-
 marshmallow-sqlalchemy = "*"
 sqlalchemy-views = "*"
 sqlalchemy = "<1.4"
-
 waitress = "*"
 requests = "*"
 authlib = "*"
-
 webargs = "*"
 setuptools = "*"
 simplejson = "*"
@@ -36,15 +32,14 @@ bcrypt = "*"
 maya = "*"
 pyyaml = "*"
 deepdiff = "*"
-
 mysqlclient = "*"
 mysql-connector-python = "*"
 sqlacodegen = "*"
 pytz = "*"
-
 shortuuid = "*"
 pathlib = "*"
 click = "*"
+pipfile = "*"
 
 [dev-packages]
 
