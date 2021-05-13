@@ -33,7 +33,7 @@ $ pipenv install
 $ pipenv run flask db upgrade
 
 # Populate the DB with sample data
-$ pipenv run flask populate
+#$ pipenv run flask populate
 
 # Start the application
 $ pipenv run python ./app.py
@@ -42,7 +42,6 @@ $ pipenv run flask run --port=80
 
 # Access the app in browser: http://127.0.0.1/
 # Administrator account: admin@gmail.com, password: admin
-  ```
 
-> Note: Default user `admin@gmail.com` password `admin`
+
 
