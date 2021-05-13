@@ -41,6 +41,8 @@ pathlib = "*"
 click = "*"
 pipfile = "*"
 
+pymysql = "*"
+
 [dev-packages]
 
 [requires]
