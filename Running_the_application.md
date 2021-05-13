@@ -4,23 +4,18 @@
 
 **1. Make sure that the required MySQL instance is up and running!**
 
-------------not using-------------
-For example we might spawn a docker MySQL instance using:
-`docker run --name my-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306`
-------------not using--------------
-
-**2. Clone the code and run the app**
+**2. ubuntu Dependecy**
+pip3 install pypot
+#
+**3. Clone the code and run the app**
 pip install flask 
-
 pipenv shell
-
 pipenv install Pipfile
-
 
 ```bash
 # Get the code
 git clone https://github.com/hoyoul321/flask_website.git
-cd intranet
+cd website
 
 # Virtualenv modules installation 
 $ pipenv install
