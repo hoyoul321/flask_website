@@ -22,13 +22,13 @@ from sqlalchemy.orm import relationship, backref
 from website.db import db, marshmallow, PaginatedMixin, declarative_model
 from website.audit import AuditableMixin
 
-bind_key = 'FLASK_WEBSITE'
-Model = declarative_model(db, bind_key)
+#bind_key = 'FLASK_WEBSITE'
+#Model = declarative_model(db, bind_key)
 
-class MarketIndex(Model, AuditableMixin):  
-    __bind_key__ = bind_key
-    __tablename__ = 'user'    
-    id = Column(String(45), primary_key=True)
-    password = Column(String(255))
-    user_name = Column(String(255))
-    extra = Column(string(255))
+#class User(Model, AuditableMixin):  
+#    __bind_key__ = bind_key
+#    __tablename__ = 'user'    
+#    id = Column(String(45), primary_key=True)
+#    password = Column(String(255))
+#    user_name = Column(String(255))
+#    extra = Column(string(255))

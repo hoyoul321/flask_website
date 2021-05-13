@@ -1,23 +1,19 @@
 ---
-DEBUG: True
+  DEBUG: True
   # !-!-! Change in production !-!-!
   SECRET_KEY: PLEASE_CHANGE_ME
   SECURITY_PASSWORD_SALT: PLEASE_CHANGE_ME
-#  'Fcm18bgXIunIFIg1nv8Rsw'
-#  '73e3929e046a18639b8236ce8e4f0bca'
   
   # ==> Set the username, password, host, port and schema correctly!
-  SQLALCHEMY_DATABASE_URI :  mysql://hoyoul:1111@127.0.0.1/flask?charset=utf8mb4
+  SQLALCHEMY_DATABASE_URI :  mysql://root:1111@127.0.0.1/flask_website?charset=utf8mb4
   #SQLALCHEMY_DATABASE_URI :  mysql://hoyoul:1111@18.223.3.53/flask?charset=utf8mb4
-  #SQLALCHEMY_BINDS :
+  SQLALCHEMY_BINDS :    
+    AUDIT: mysql://root:1111@127.0.0.1/audit?charset=utf8mb4 
   
     
   
-  FLASK_USER_SETTINGS : mysql://hoyoul:1111@127.0.0.1/USER?charset=utf8mb4  
+  FLASK_USER_SETTINGS : mysql://root:1111@127.0.0.1/USER?charset=utf8mb4  
   #FLASK_USER_SETTINGS : mysql://hoyoul:1111@18.223.3.53/USER?charset=utf8mb4
-
-  INFLUX_URIS : {}
-    #S1 : "http://<ip1>:8086/query?pretty=true&db=tickstore&q=SELECT%20*%20FROM%20trade%20WHERE%20symbol=%27KIS_KOSPI200_IDX%27%20ORDER%20BY%20time%20DESC%20LIMIT%201%20tz(%27Asia/Seoul%27)&epoch=s"
 
   SYNCTHING_DEVICES : {}
     #Dev1 : "<id1>"

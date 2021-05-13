@@ -16,7 +16,6 @@ class Config(object):
     basedir = os.path.abspath(os.path.dirname(__file__))
     with open(CONFIG_FILE, 'rt', encoding='utf8') as yml:
         __yaml = safe_load(yml)
-
     # Set up the App SECRET_KEY    
     SECRET_KEY = __yaml['SECRET_KEY']
     SECURITY_PASSWORD_SALT = __yaml['SECURITY_PASSWORD_SALT']
@@ -51,10 +50,7 @@ class Config(object):
     OAUTH_AZURE_SCOPE = __yaml['OAUTH_AZURE_SCOPE']
 
     # Strategy execution status enpoints
-    STATUS_ENDPOINTS = __yaml['STATUS_ENDPOINTS']
-
-    TRADING_CONTACTS = __yaml['TRADING_CONTACTS']
-    
+    STATUS_ENDPOINTS = __yaml['STATUS_ENDPOINTS']    
     BABEL_DEFAULT_LOCALE: "en"
     try:
         BABEL_DEFAULT_LOCALE: __yaml['BABEL_DEFAULT_LOCALE']

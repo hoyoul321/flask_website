@@ -1,0 +1,56 @@
+---
+  DEBUG: True
+  # !-!-! Change in production !-!-!
+  SECRET_KEY: PLEASE_CHANGE_ME
+  SECURITY_PASSWORD_SALT: PLEASE_CHANGE_ME
+  
+  # ==> Set the username, password, host, port and schema correctly!
+  SQLALCHEMY_DATABASE_URI :  mysql://root:1111@127.0.0.1/OAM_Intranet?charset=utf8mb4
+  SQLALCHEMY_BINDS :
+    
+    OAM_TRADING_MONITOR_SETTINGS : mysql://root:1111@127.0.0.1/OAM_Trading_monitor_settings?charset=utf8mb4
+    OAM_FUNDS : mysql://root:1111@127.0.0.1/OAM_Funds?charset=utf8mb4
+    OAM_FUTURES : mysql://root:1111@127.0.0.1/OAM_Futures?charset=utf8mb4
+    OAM_ILLIQUID : mysql://root:1111@127.0.0.1/OAM_Illiquid?charset=utf8mb4
+    OAM_STOCKS : mysql://root:1111@127.0.0.1/OAM_Stocks?charset=utf8mb4
+    OAM_ACCOUNTING : mysql://root:1111@127.0.0.1/OAM_Accounting_bank?charset=utf8mb4
+    OAM_INHOUSE : mysql://root:1111@127.0.0.1/OAM_Inhouse_product?charset=utf8mb4 
+    OAM_MARKET_INDEX : mysql://root:1111@127.0.0.1/OAM_Market_index?charset=utf8mb4 
+    OAM_IPO : mysql://root:1111@127.0.0.1/OAM_Ipo?charset=utf8mb4 
+    OAM_EXCHANGES : mysql://root:1111@127.0.0.1/OAM_Exchanges?charset=utf8mb4 
+    OAM_PROP : mysql://root:1111@127.0.0.1/OAM_Prop?charset=utf8mb4 
+    OAM_MARKET_DATA: mysql://root:1111@127.0.0.1/OAM_Market_data?charset=utf8mb4 
+    OAM_AUDIT: mysql://root:1111@127.0.0.1/OAM_Audit?charset=utf8mb4 
+
+  OAM_INFLUX_DOMESTIC_URIS : {}
+    #S1 : "http://<ip1>:8086/query?pretty=true&db=tickstore&q=SELECT%20*%20FROM%20trade%20WHERE%20symbol=%27KIS_KOSPI200_IDX%27%20ORDER%20BY%20time%20DESC%20LIMIT%201%20tz(%27Asia/Seoul%27)&epoch=s"
+    #S2 : "http://<ip2>:8086/query?pretty=true&db=tickstore&q=SELECT%20*%20FROM%20trade%20WHERE%20symbol=%27KIS_KOSPI200_IDX%27%20ORDER%20BY%20time%20DESC%20LIMIT%201%20tz(%27Asia/Seoul%27)&epoch=s"
+
+  OAM_INFLUX_FOREIGN_URIS : {}
+    #S1 : "http://<ip1>:8086/query?pretty=true&db=tickstore&q=SELECT%20*%20FROM%20trade%20ORDER%20BY%20time%20DESC%20LIMIT%201%20tz(%27America/New_York%27)&epoch=s"
+    #S2 : "http://<ip2>:8086/query?pretty=true&db=tickstore&q=SELECT%20*%20FROM%20trade%20ORDER%20BY%20time%20DESC%20LIMIT%201%20tz(%27America/New_York%27)&epoch=s"
+
+  OAM_SYNCTHING_DEVICES : {}
+    #Dev1 : "<id1>"
+    #Dev2 : "<id2>"
+    #Dev3 : "<id3>"
+    
+
+  OAUTH_AZURE_APP : "<app/tenant_id>"
+  OAUTH_AZURE_KEY : "<secret_id>"
+  OAUTH_AZURE_AUTH_URL : https://login.microsoftonline.com/<app/tenant_id>/oauth2/v2.0/authorize
+  OAUTH_AZURE_TOKEN_URL : https://login.microsoftonline.com/<app/tenant_id>/oauth2/v2.0/token
+  OAUTH_AZURE_BASE_URL : https://graph.microsoft.com/
+  OAUTH_AZURE_SCOPE : openid email profile
+
+  STATUS_ENDPOINTS: {}
+    #Strat1 : http://<ip>:<port>/<status_path>
+    #Strat2 : http://<ip>:<port>/<status_path>
+    #Strat3 : http://<ip>:<port>/<status_path>
+
+  TRADING_CONTACTS:
+    A: 010-1234-5678, 010-8765-4321
+    B: 010-2435-4657
+    
+  BABEL_DEFAULT_LOCALE: "en"
+  BABEL_DEFAULT_TIMEZONE: "Asia/Seoul"

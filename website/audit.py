@@ -168,7 +168,7 @@ class AuditableMixin(object):
         def audit_update(mapper, connection, target):
             """Listen for the `after_update` event and create an AuditLog entry with before and after state changes"""
             from deepdiff import DeepDiff
-            from websiteq.utils import get_schema
+            from website.utils import get_schema
 
             # current_app.logger.debug(f'=======> after_update')
             s = get_schema(target)

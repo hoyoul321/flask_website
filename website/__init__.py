@@ -108,19 +108,6 @@ def create_app():
             User
         )
         from simplejson import loads
-
-        # ### FUTURES ###
-
-    
-        d = loads("""
-        [
-            {"code":"BB","description":"Bloomberg"},
-            {"code":"KIS","description":"Korea Investments And Securities"},
-            {"code":"SS","description":"Samsung Futures"}
-        ]
-        """)
-        populate_model_data(FuturesBroker, d)
-
         
 
         db.session.commit()

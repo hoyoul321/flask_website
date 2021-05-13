@@ -1,0 +1,240 @@
+{% extends "layouts/base.j2" %}
+
+{% block title %} Permissions Administration {% endblock %} 
+
+<!-- Element injected in the BODY element -->
+{% block body_class %} {% endblock body_class %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- jsGrid -->
+  <link rel="stylesheet" href="/static/assets/plugins/jsgrid/jsgrid.min.css">
+  <link rel="stylesheet" href="/static/assets/plugins/jsgrid/jsgrid-theme.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/assets/css/adminlte.min.css">
+
+{% endblock stylesheets %}
+
+{% block content %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Permissions Administration</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active">Permissions</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    {% macro selected(id) %}
+      {% if id==role_id %}
+      selected
+      {% endif %}
+    {%- endmacro %}
+    
+    <section class="content">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Role</h3>
+        </div>
+        <div class="card-body">
+          <form action="{{url_for('admin.permissions_admin')}}" method="post">
+            <div class="row">
+              <div class="col-2">
+                <select class="custom-select" name="role-selector" id="user-select">
+                  {% for role in roles %}
+                  <option value="{{role.id}}" {{selected(role.id)}}>{{role.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-2">
+                <input class="btn btn-primary" name="select-role" type="submit" value="Select">
+              </div>
+              <div class="col-8"></div>
+            <div class="row">
+          <form>
+        </div>
+      </div>
+      
+    </section>
+
+    {% macro perm_string(bp,ep,m) %}
+    {{bp}}.{{ep}}-{{m}}
+    {%- endmacro %}
+
+    {% macro checked(perm_string,role_permissions) %}
+      {% if perm_string|trim in role_permissions %}
+      checked
+      {% endif %}
+    {%- endmacro %}
+
+    {% macro active(perm_string,role_permissions) %}
+      {% if perm_string|trim in role_permissions %}
+      active
+      {% endif %}
+    {%- endmacro %}
+
+    <!-- Main content -->
+    <section action="{{url_for('admin.permissions_admin')}}" class="content">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Permissions for role: {{ role_name }}</h3>
+        </div>
+        <!-- /.card-header -->
+
+        <div class="card-body">
+          <form method="post" autocomplete="off">          
+              <input type="hidden" name="role_id" value="{{role_id}}">
+              {% for bp in permissions %}
+              <div class="mb-5">
+                <div class="row mb-2">
+                  <h3 class="blueprint-header">{{bp}}</h3>
+                </div>
+                {% for ep in permissions[bp] %}
+                <div class="row mb-1">
+                  <div class="col col-3">
+                    {{ep}}
+                  </div>
+                  <div class="col col-3 text-right">
+                    <div class="btn-group btn-group-toggle permission-group" data-toggle="buttons"  role="group" aria-label="HTML methods permission buttons">
+                      {% for m in ['GET','POST','PUT','DELETE'] %}
+                      {% if m in permissions[bp][ep] %}
+                      <label class="btn btn-sm btn-outline-primary {{ active(perm_string(bp,ep,m),role_permissions) }}" for="{{bp}}.{{ep}}-{{m}}">
+                        <input type="checkbox" id="{{bp}}.{{ep}}-{{m}}" name="{{bp}}.{{ep}}-{{m}}" value="{{bp}}.{{ep}}-{{m}}" {{ checked(perm_string(bp,ep,m),role_permissions) }}>{{m}}
+                      </label>
+                      {% else %}
+                      <label class="btn btn-sm btn-secondary disabled" for="{{bp}}.{{ep}}-{{m}}">
+                        <input type="checkbox" id="{{bp}}.{{ep}}-{{m}}" disabled>{{m}}
+                      </label>
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col col-6"></div>
+                </div>
+                {% endfor %}
+                <div class="row">
+                  <div class="col col-6">
+                    <input class="btn btn-block btn-sm btn-primary" type="submit" value="Save changes">
+                  </div>
+                  <div class="col col-6"></div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </form>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <!-- jsGrid -->
+  <script src="/static/assets/plugins/jsgrid/demos/db.js"></script>
+  <script src="/static/assets/plugins/jsgrid/jsgrid.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/static/assets/js/adminlte.min.js"></script>
+  <!-- jQuery -->
+  <script src="/static/assets/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- page script -->
+  <script>
+    $(function () {
+      $("#jsGrid1").jsGrid({
+          height: "auto",
+          width: "100%",
+
+          // data: {{users|safe}},
+          
+          sorting: true,
+          paging: true,
+          filtering: true,
+          pageLoading: true,
+          editing: true,
+          autoload: true,
+
+          controller: {
+            // loadData: function(filter) {
+            //     var d = $.Deferred();
+            //     $.ajax({
+            //         type: "GET",
+            //         url: "/api/users",
+            //         data: filter,
+            //         dataType: "json"
+            //     }).done(function(response) {
+            //         d.resolve(response);
+            //     });
+            //     return d.promise();
+            // },       
+
+            // insertItem: function(item) {
+            //     var d = $.Deferred();
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "/api/users",
+            //         data: item,
+            //         dataType: "json"
+            //     }).done(function(response) {
+            //         d.resolve(response);
+            //     });
+            //     return d.promise();
+            // },
+            
+            // updateItem: function(item) {
+            //     var d = $.Deferred();
+            //     $.ajax({
+            //         type: "PUT",
+            //         url: "/api/users",
+            //         data: JSON.stringify(item),
+            //         dataType: "json",
+            //         contentType: "application/json",
+            //         processData: false
+            //     }).done(function(response) {
+            //         d.resolve(response);
+            //     });
+            //     return d.promise();
+            // },
+            
+            // deleteItem: function(item) {
+            //     return $.ajax({
+            //         type: "DELETE",
+            //         url: "/api/users",
+            //         data: item
+            //     });
+            // },
+          },
+
+          fields: [
+              { name: "username", type: "text", width: 255 },
+              { name: "email", type: "text", width: 255 },
+              { name: "active", type: "checkbox" },
+              { type: "control" }
+          ]
+
+      });
+    });
+  </script>
+
+{% endblock javascripts %}
