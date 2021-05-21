@@ -4,7 +4,7 @@ from flask import Flask, render_template
 #Flask 객체 인스턴스 생성
 app = Flask(__name__)
 
-@app.route('/') # 접속하는 url
+@app.route('/', methods= ['GET']) # 접속하는 url
 def index():
     from utils import mysql
     print("here")
@@ -13,5 +13,5 @@ def index():
     return render_template('index.html', data =res )
 
 if __name__=="__main__":
-    app.run() #debug=True
+    app.run(debug=True, host = '0.0.0.0'  , port = 5000) 
 
