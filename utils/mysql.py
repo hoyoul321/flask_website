@@ -5,8 +5,8 @@ from mysql.connector import Error
 def mysql_sample_query():
     try: 
         conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
+            host="3.142.123.247",
+            user="hoyoul",
             password="1111",
             database='hello_world',
             charset="utf8mb4")
