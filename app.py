@@ -7,7 +7,9 @@ app = Flask(__name__)
 @app.route('/') # 접속하는 url
 def index():
     from utils import mysql
+    print("here")
     res =  mysql.mysql_sample_query()
+    print(res)
     return render_template('index.html', data =res )
 
 if __name__=="__main__":
