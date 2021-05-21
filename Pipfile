@@ -46,4 +46,4 @@ pymysql = "*"
 [dev-packages]
 
 [requires]
-python_version = "3.9.4"
+python_version = "3.8.5"
