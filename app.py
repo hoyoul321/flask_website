@@ -1,4 +1,4 @@
-
+import os
 from flask import Flask, render_template
 
 #Flask 객체 인스턴스 생성
